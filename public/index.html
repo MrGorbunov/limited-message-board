@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="./style.css">
   <script defer src="./bootstrap.min.js"></script>
 
+  <!-- Vue -->
+  <!-- TODO: Replace with vue.min.js once frontend is done -->
+  <script defer src="./vue-dev.js"></script>
+  <script defer src="./index.js"></script>
+
 </head>
 <body>
   <div class="container my-5" id="masterContainer">
@@ -24,37 +29,12 @@
     <h3>Messages</h3>
 
     <!-- Example Messges -->
-    <div class="message">
+    <div class="my-4" v-for="msg in messages">
       <h5>
-        1. EdgeLord
+        {{ msg.index + ". " + msg.name}}
       </h5>
-      <p> Haha wow I am so edgy. I really can't wait for the day when my edginess stops.
-      </p>
+      <p> {{msg.message}}</p>
     </div>
-    <div class="message">
-      <h5>
-        2. Meat Grinder
-      </h5>
-      <p> Never gonna give you up, never gonna let you down, never gonna turn aroudn and desert you.
-      </p>
-    </div>
-
-    <div class="message">
-      <h5>
-        3. ---
-      </h5>
-      <p> Insert Message
-      </p>
-    </div>
-
-    <div class="message">
-      <h5>
-        4. ---
-      </h5>
-      <p> Insert Message
-      </p>
-    </div>
-
 
     <br>
     <br>
@@ -63,12 +43,13 @@
 
     <form>
       <div class="form-group">
-        <input type="text" class="form-control" id="nameInput" placeholder="Display Name">
+        <label for="form-control">Display Name</label>
+        <input type="text" class="form-control" maxlength="20" id="nameInput" placeholder="25 characters max">
       </div>
 
       <div class="form-group">
-        <label for="form-control">Enter a message, 300 characters or less: </label>
-        <textarea type="textarea" class="form-control" rows="3" id="content" maxlength="300" placeholder="Write your message to the world"></textarea> 
+        <label for="form-control">Enter your wonderful message</label>
+        <textarea onkeyup="limitNewLines(this)" type="textarea" class="form-control" rows="5" id="content" maxlength="300" placeholder="300 characters & 5 line breaks max"></textarea> 
       </div>
 
       <button type="submit" class="btn my-2 btn-primary">Broadcast</button>
@@ -81,7 +62,7 @@
     <br>
     <p>
       <i>
-      Created by <a href="https://github.com/MrGorbunov/">MrGorbunov</a> to learn web development. Checkout the <a href="">source</a> if you're interested :).
+      Created by <a href="https://github.com/MrGorbunov/">MrGorbunov</a> to learn web development. Checkout the <a href="">source</a> if you're interested :)
       </i>
     </p>
 
