@@ -25,8 +25,6 @@ function updateBoard () {
   fetch('/api/').then(res => {
     return res.json(); // ty Aveek <3
   }).then(data => {
-    console.log(data);
-    console.log("Hello");
     messageBoard.messages = data;
   }).catch(err => {
     console.log(err);
