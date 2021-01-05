@@ -15,36 +15,49 @@ function limitNewLines (textArea) {
 }
 
 
+
+
 //
 // Vue.js & Routing
 //
 
-// Fetching is done on page load only 
-// - refreshes required to see new results
-// - form submission auto refreshes
-// function pullMessageData () {
-//   fetch('./api')
-// }
-fetch('/api/').then(res => {
+function updateBoard () {
+  fetch('/api/').then(res => {
     return res.json(); // ty Aveek <3
-}).then(data => {
-  console.log(data);
-});
+  }).then(data => {
+    console.log(data);
+    console.log("Hello");
+    messageBoard.messages = data;
+  }).catch(err => {
+    console.log(err);
+  });
+}
 
 var messageBoard = new Vue({
   el: '#masterContainer',
   data: {
     messages: [
       {
-        index: 1,
         name: "Spicester",
         message: "Save the world my youngling"
       },
       {
-        index: 2,
         name: "True Spicester",
         message: "No truer spicester ever lived\nI really belive that\nOne day we'll goto the moon."
       }
     ],
   }
 });
+
+
+
+
+
+//
+// Fetching
+//
+
+// Fetching is done on page load only 
+// - refreshes required to see new results
+// - form submission auto refreshes
+updateBoard();

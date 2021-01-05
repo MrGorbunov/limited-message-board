@@ -29,9 +29,9 @@
     <h3>Messages</h3>
 
     <!-- Example Messges -->
-    <div class="my-4" v-for="msg in messages">
+    <div class="my-4" v-for="(msg, ind) in messages">
       <h5>
-        {{ msg.index + ". " + msg.name}}
+        {{ (ind+1) + ". " + msg.name}}
       </h5>
       <p> {{msg.message}}</p>
     </div>
