@@ -8,16 +8,12 @@ server is reset! There is nothing persistent (for now).
 
 // Index is infered from order
 let messages = [
-  {
-    name: '---',
-    message: '...'
-  }
 ];
 
-for (var i=2; i<=10; i++) {
+for (var i=0; i<10; i++) {
   messages.push({
     name: '---',
-    message: '...'
+    message: 'Write a message to take over this one'
   });
 }
 
