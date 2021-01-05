@@ -4,7 +4,8 @@
   "description": "Displays messages",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "prod": "node server"
   },
   "author": "Michael Gorbunov",
   "license": "CC0-1.0",
