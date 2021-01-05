@@ -5,16 +5,31 @@ const messagedb = require('./messagedb');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
+// Needed for handling POST & form submissions
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+// Static submission page + api
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// API calls right here
-app.get('/api/messages', (req, res) => {
+// API - Form submission + Vue rendering
+app.get('/api', (req, res) => {
   res.json(messagedb.messages);
 });
 
-app.post('/api/messages', (req, res) => {
-  res.json({ msg: "It's alive!" });
+app.post('/api', (req, res) => {
+  const infoDict = req.body;
+
+  if (!messagedb.isValidMessage(infoDict.displayName, infoDict.messageBody)) {
+    console.log("Invalid Message");
+    res.status(400);
+    res.redirect('/');
+  }
+
+  // Add message
+  messagedb.addMessage(infoDict.displayName, infoDict.messageBody);
+  res.redirect('/');
 });
 
 

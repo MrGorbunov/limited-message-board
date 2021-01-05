@@ -41,15 +41,15 @@
     <h3>Add a Message</h3>
     <br>
 
-    <form>
+    <form action="/api" method="POST">
       <div class="form-group">
         <label for="form-control">Display Name</label>
-        <input type="text" class="form-control" maxlength="20" id="nameInput" placeholder="25 characters max">
+        <input name="displayName" type="text" class="form-control" maxlength="20" id="nameInput" placeholder="25 characters max">
       </div>
 
       <div class="form-group">
         <label for="form-control">Enter your wonderful message</label>
-        <textarea onkeyup="limitNewLines(this)" type="textarea" class="form-control" rows="5" id="content" maxlength="300" placeholder="300 characters & 5 line breaks max"></textarea> 
+        <textarea name="messageBody" onkeyup="limitNewLines(this)" type="textarea" class="form-control" rows="5" id="content" maxlength="300" placeholder="300 characters & 5 line breaks max"></textarea> 
       </div>
 
       <button type="submit" class="btn my-2 btn-primary">Broadcast</button>
