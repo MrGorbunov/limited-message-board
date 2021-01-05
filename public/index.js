@@ -26,9 +26,7 @@ function limitNewLines (textArea) {
 //   fetch('./api')
 // }
 fetch('/api/').then(res => {
-  res.json();
-  console.log('response!');
-  // console.log(res.json());
+    return res.json(); // ty Aveek <3
 }).then(data => {
   console.log(data);
 });
