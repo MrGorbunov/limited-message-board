@@ -2,12 +2,17 @@
 Message Database
 
 This isn't really a database, just a JS dictionary with some
-functions. This also means that messages are reset when the
-server is reset! There is nothing persistent (for now).
+functions. To keep persistence across server restarts, the
+dictionary is written to a file.
 */
 
-// Index is infered from order
-let messages = [
+const fs = require('fs');
+const path = require('path');
+
+
+
+// This list is sorted (i.e. message 1 = index 0)
+var messages = [
 ];
 
 for (var i=0; i<10; i++) {
@@ -24,6 +29,42 @@ for (var i=0; i<10; i++) {
 //
 // Useful functions for modifying messages
 
+function resetDB () {
+  let ogDB = [];
+  for (var i=0; i<10; i++) {
+    ogDB.push({
+      name: '---',
+      message: 'Write a message to take over this one.'
+    });
+  }
+
+  // Write new object to file
+  fs.writeFile(path.join(__dirname, 'database.txt'), JSON.stringify(ogDB), (err, written, string) => {
+    if (err) {
+      throw err;
+    }
+  });
+
+  readDB();
+}
+
+/**
+ * Reads database.txt, pulling it into runtime memory.
+ */
+function readDB () {
+  fs.readFile(path.join(__dirname, 'database.txt'), (err, data) => {
+    if (err) {
+      throw err;
+    }
+
+    // There is likely a way to clean this up but ngl I'm not 100% sure how
+    let localMessages = JSON.parse(data);
+    messages = localMessages;
+    exports.messages = localMessages;
+  });
+}
+
+
 function addMessage (displayName, messageText) {
   const newMessage = {
     name: displayName,
@@ -33,6 +74,18 @@ function addMessage (displayName, messageText) {
   // Add new message and remove last message
   messages.unshift(newMessage);
   messages.pop();
+
+  // Write new object to file
+  fs.writeFile(path.join(__dirname, 'database.txt'), JSON.stringify(messages), (err, written, string) => {
+    if (err) {
+      throw err;
+    }
+  });
+}
+
+
+function checkMessages () {
+  console.log(messages);
 }
 
 
@@ -68,6 +121,8 @@ function isValidMessage (displayName, messageText) {
 
 
 exports.messages = messages;
-exports.addMessage = addMessage;
 exports.isValidMessage = isValidMessage;
+exports.addMessage = addMessage;
 
+exports.resetDB = resetDB;
+exports.readDB = readDB;

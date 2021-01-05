@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: false}));
 // Static submission page + api
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API - Form submission + Vue rendering
+// API - Endpoint for messages (form submission & GET reqs)
 app.get('/api', (req, res) => {
   res.json(messagedb.messages);
 });
@@ -32,6 +32,10 @@ app.post('/api', (req, res) => {
   res.redirect('/');
 });
 
+
+
+// Loads database.txt into memory
+messagedb.readDB();
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT} :)`);
