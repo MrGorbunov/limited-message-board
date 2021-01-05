@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="container my-5" id="masterContainer">
+    <br>
+    <h1 id="title">Message Board</h1> 
+    <p style="margin-bottom: 0;">
+      A mesage board, that holds 10 messages at a time. Use any name and write anything. The messages aren't checked before being posted so don't click bad links and sorry if naughty words show up.
+    </p>
+
+    <br>
+    <br>
+    <h3>Messages</h3>
+
+    <!-- Example Messges -->
+    <div class="message">
+      <h5>
+        1. EdgeLord
+      </h5>
+      <p> Haha wow I am so edgy. I really can't wait for the day when my edginess stops.
+      </p>
+    </div>
+    <div class="message">
+      <h5>
+        2. Meat Grinder
+      </h5>
+      <p> Never gonna give you up, never gonna let you down, never gonna turn aroudn and desert you.
+      </p>
+    </div>
+
+    <div class="message">
+      <h5>
+        3. ---
+      </h5>
+      <p> Insert Message
+      </p>
+    </div>
+
+    <div class="message">
+      <h5>
+        4. ---
+      </h5>
+      <p> Insert Message
+      </p>
+    </div>
+
+
+    <br>
+    <br>
+    <h3>Add a Message</h3>
+    <br>
+
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" id="nameInput" placeholder="Display Name">
+      </div>
+
+      <div class="form-group">
+        <label for="form-control">Enter a message, 300 characters or less: </label>
+        <textarea type="textarea" class="form-control" rows="3" id="content" maxlength="300" placeholder="Write your message to the world"></textarea> 
+      </div>
+
+      <button type="submit" class="btn my-2 btn-primary">Broadcast</button>
+    </form>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>
+      <i>
+      Created by <a href="https://github.com/MrGorbunov/">MrGorbunov</a> to learn web development. Checkout the <a href="">source</a> if you're interested :).
+      </i>
+    </p>
+
+  </div>
+</body>
+</html>
