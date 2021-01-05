@@ -19,6 +19,20 @@ function limitNewLines (textArea) {
 // Vue.js & Routing
 //
 
+// Fetching is done on page load only 
+// - refreshes required to see new results
+// - form submission auto refreshes
+// function pullMessageData () {
+//   fetch('./api')
+// }
+fetch('/api/').then(res => {
+  res.json();
+  console.log('response!');
+  // console.log(res.json());
+}).then(data => {
+  console.log(data);
+});
+
 var messageBoard = new Vue({
   el: '#masterContainer',
   data: {
