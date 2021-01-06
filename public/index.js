@@ -17,6 +17,7 @@ function limitNewLines (textArea) {
 
 
 
+
 //
 // Vue.js & Routing
 //
@@ -25,7 +26,14 @@ function updateBoard () {
   fetch('/api/').then(res => {
     return res.json(); // ty Aveek <3
   }).then(data => {
-    messageBoard.messages = data;
+    let actualData = [];
+    data.forEach(elm => {
+      actualData.push({
+        name: elm.name,
+        message: linkifyHtml(elm.message)
+      })
+    })
+    messageBoard.messages = actualData;
   }).catch(err => {
     console.log(err);
   });

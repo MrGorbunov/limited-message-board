@@ -12,8 +12,7 @@ const path = require('path');
 
 
 // This list is sorted (i.e. message 1 = index 0)
-var messages = [
-];
+var messages = [];
 
 for (var i=0; i<10; i++) {
   messages.push({
@@ -27,7 +26,8 @@ for (var i=0; i<10; i++) {
 
 
 //
-// Useful functions for modifying messages
+// DB Initialization
+
 
 function resetDB () {
   let ogDB = [];
@@ -45,13 +45,14 @@ function resetDB () {
     }
   });
 
-  readDB();
+  readDBFile();
 }
+
 
 /**
  * Reads database.txt, pulling it into runtime memory.
  */
-function readDB () {
+function readDBFile () {
   fs.readFile(path.join(__dirname, 'database.txt'), (err, data) => {
     if (err) {
       throw err;
@@ -63,6 +64,43 @@ function readDB () {
     exports.messages = localMessages;
   });
 }
+
+
+
+
+
+
+
+//
+// Actual DB Interfacing
+
+
+// /**
+//  * Internal method that updates the exposed message array.
+//  * Right now that means running message bodies through
+//  * linkify-urls
+//  */
+// function updateExposedArray () {
+//   exposedMessages = [];
+//   messages.forEach(msg => {
+//     exposedMessages.push({
+//       name: msg.name,
+//       message: linkifyUrls(msg.message)
+//     });
+//   });
+
+//   module.messages = exposedMessages;
+//   console.log(exposedMessages);
+// }
+
+// console.log(
+//   linkifyUrls('headover to google.com https://www.google.com', 
+//   {
+//     attributes: {
+//       type: 'string'
+//     }
+//   }
+// ));
 
 
 function addMessage (displayName, messageText) {
@@ -81,11 +119,6 @@ function addMessage (displayName, messageText) {
       throw err;
     }
   });
-}
-
-
-function checkMessages () {
-  console.log(messages);
 }
 
 
@@ -120,9 +153,9 @@ function isValidMessage (displayName, messageText) {
 
 
 
+exports.resetDB = resetDB;
+exports.readDBFile = readDBFile;
+
 exports.messages = messages;
 exports.isValidMessage = isValidMessage;
 exports.addMessage = addMessage;
-
-exports.resetDB = resetDB;
-exports.readDB = readDB;

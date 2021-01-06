@@ -8,16 +8,27 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="./bootstrap.min.css">
   <link rel="stylesheet" href="./style.css">
-  <script defer src="./bootstrap.min.js"></script>
+  <script defer src="./deps/bootstrap.min.js"></script>
 
   <!-- Vue -->
-  <!-- TODO: Replace with vue.min.js once frontend is done -->
-  <script defer src="./vue.min.js"></script>
+  <script defer src="./deps/vue.min.js"></script>
+
+  <!-- Linkifyjs -->
+  <!--[if IE 8]>
+  <script defer src="./deps/linkify-polyfill.min.js"></script>
+  <![endif]-->
+  <script defer src="./deps/linkify.min.js"></script>
+  <script defer src="./deps/linkify-html.min.js"></script>
+
+
   <script defer src="./index.js"></script>
 
 </head>
 <body>
   <div class="container my-5" id="masterContainer">
+
+    <p id="linkify"></p>
+
     <br>
     <h1 id="title">Message Board</h1> 
     <p style="margin-bottom: 0;">
@@ -33,7 +44,7 @@
       <h5>
         {{ (ind+1) + ". " + msg.name}}
       </h5>
-      <p> {{msg.message}}</p>
+      <p v-html="msg.message"></p>
     </div>
 
     <br>

@@ -35,7 +35,7 @@ app.post('/api', (req, res) => {
 
 
 // Loads database.txt into memory
-messagedb.readDB();
+messagedb.readDBFile();
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT} :)`);
